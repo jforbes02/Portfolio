@@ -148,6 +148,10 @@
     }
     .proj-card:hover { border-color: rgba(245,166,35,0.3); transform: translateY(-4px); }
     .proj-card:hover::before { opacity: 1; }
+    .proj-card.linked { cursor: pointer; }
+    .proj-card .proj-link-icon { display: none; position: absolute; top: 16px; right: 16px; font-size: 12px; color: var(--muted); }
+    .proj-card.linked .proj-link-icon { display: block; }
+    .proj-card.linked:hover .proj-link-icon { color: var(--amber); }
 
     .proj-card.featured {
       border-color: rgba(0,229,255,0.2);
@@ -358,8 +362,25 @@
       </div>
       <div class="projects-grid">
 
-        <div class="proj-card featured reveal" onmousemove="trackMouse(event,this)">
+        <div class="proj-card linked reveal" onmousemove="trackMouse(event,this)" onclick="window.open('https://points-flagger.vercel.app/','_blank')">
+          <span class="proj-link-icon">↗</span>
           <div class="proj-num">01 ——</div>
+          <div class="proj-title">oddflagger</div>
+          <p class="proj-desc">Real-time NBA player props tracker that detects significant line movements on FanDuel. Serverless architecture with AWS Lambda, ElastiCache (Redis), and EventBridge CRON jobs. FastAPI backend proxies Lambda endpoints to a React frontend that auto-refreshes every 10 minutes during game windows.</p>
+          <div class="proj-tags">
+            <span class="tag highlight">AWS Lambda</span>
+            <span class="tag highlight">ElastiCache</span>
+            <span class="tag">EventBridge</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">React</span>
+            <span class="tag">Redis</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="proj-card featured linked reveal reveal-delay-1" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/jforbes02/JustinPay','_blank')">
+          <span class="proj-link-icon">↗</span>
+          <div class="proj-num">02 ——</div>
           <div class="proj-title">JustinPay</div>
           <p class="proj-desc">NFC tap-to-pay Ethereum crypto payment app for mobile. Secure FinTech backend with FastAPI, JWT auth, and live Ethereum blockchain integration via Web3.</p>
           <div class="proj-tags">
@@ -372,8 +393,8 @@
           </div>
         </div>
 
-        <div class="proj-card reveal reveal-delay-1" onmousemove="trackMouse(event,this)">
-          <div class="proj-num">02 ——</div>
+        <div class="proj-card reveal reveal-delay-2" onmousemove="trackMouse(event,this)">
+          <div class="proj-num">03 ——</div>
           <div class="proj-title">Wayfair Market Intelligence</div>
           <p class="proj-desc">4-agent n8n automation system: Trend Discovery, Competitor Monitoring, AI Content Strategy, and Market Intelligence Dashboard. Aggregated insights for Rugs category stakeholders.</p>
           <div class="proj-tags">
@@ -384,8 +405,9 @@
           </div>
         </div>
 
-        <div class="proj-card reveal reveal-delay-2" onmousemove="trackMouse(event,this)">
-          <div class="proj-num">03 ——</div>
+        <div class="proj-card linked reveal reveal-delay-3" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/jforbes02/Clubbies','_blank')">
+          <span class="proj-link-icon">↗</span>
+          <div class="proj-num">04 ——</div>
           <div class="proj-title">Clubbies</div>
           <p class="proj-desc">Full-stack nightlife review platform for NYC venue discovery. JWT auth, rate limiting, Cloudinary for media, normalized PostgreSQL schema deployed to Render.</p>
           <div class="proj-tags">
@@ -397,8 +419,9 @@
           </div>
         </div>
 
-        <div class="proj-card reveal reveal-delay-3" onmousemove="trackMouse(event,this)">
-          <div class="proj-num">04 ——</div>
+        <div class="proj-card linked reveal reveal-delay-1" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/nokonkwo-jpg/NYC-Traffic-Insight','_blank')">
+          <span class="proj-link-icon">↗</span>
+          <div class="proj-num">05 ——</div>
           <div class="proj-title">Weather-Driven Traffic Analytics</div>
           <p class="proj-desc">Cloud-native predictive analytics platform forecasting NYC traffic volume from weather conditions. Integrated 1.7M+ traffic data points via OpenMeteo API and NYC DOT datasets. Presented at AI4ALL Ignite NYC.</p>
           <div class="proj-tags">
@@ -410,8 +433,9 @@
           </div>
         </div>
 
-        <div class="proj-card reveal reveal-delay-1" onmousemove="trackMouse(event,this)">
-          <div class="proj-num">05 ——</div>
+        <div class="proj-card linked reveal reveal-delay-2" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/jforbes02/Align','_blank')">
+          <span class="proj-link-icon">↗</span>
+          <div class="proj-num">06 ——</div>
           <div class="proj-title">Align</div>
           <p class="proj-desc">Android fitness app for real-time squat form analysis using MediaPipe pose estimation. Kotlin/Jetpack Compose frontend with FastAPI backend, SQLAlchemy models, and GitLab CI/CD.</p>
           <div class="proj-tags">
@@ -423,8 +447,8 @@
           </div>
         </div>
 
-        <div class="proj-card reveal reveal-delay-2" onmousemove="trackMouse(event,this)">
-          <div class="proj-num">06 ——</div>
+        <div class="proj-card reveal reveal-delay-3" onmousemove="trackMouse(event,this)">
+          <div class="proj-num">07 ——</div>
           <div class="proj-title">Neural Networks Research</div>
           <p class="proj-desc">Comparative study of MLMVN, MLP, and SVM models in MATLAB on a student grade dataset. Hebbian learning and error-correction implementations in Python. Time series prediction on Poland power consumption.</p>
           <div class="proj-tags">
