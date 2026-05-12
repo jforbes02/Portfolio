@@ -267,6 +267,23 @@
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
 
+    * { cursor: none !important; }
+    .cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 99999;
+      width: 6px; height: 6px; background: var(--amber);
+      border-radius: 50%; pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      position: fixed; top: 0; left: 0; z-index: 99998;
+      width: 28px; height: 28px;
+      border: 1px solid rgba(232,37,58,0.5);
+      border-radius: 50%; pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: left 0.08s ease, top 0.08s ease, width 0.2s, height 0.2s, border-color 0.2s;
+    }
+    .cursor-ring.hovered { width: 44px; height: 44px; border-color: var(--amber); }
+
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
@@ -289,6 +306,8 @@
 </head>
 <body>
 
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
   <div class="grid-bg"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -342,7 +361,7 @@
         <div class="about-text reveal">
           <p><span class="hi">Hey, I'm Justin.</span> A CS student at Manhattan University who builds systems that drive real business impact, from serverless AWS architectures to full-stack fintech applications.</p>
           <p>I recently completed an AI Automation Externship at <strong>Wayfair</strong>, recognized as a <strong>Top Performer</strong>, where I built a 4-agent n8n system that automated competitive intelligence workflows for the Rugs category team.</p>
-          <p>Outside of that, I'm the founder of <strong>Clubbies</strong>, a nightlife discovery platform built for the Bronx and NYC, and I'm constantly pushing into fintech building payment systems, real-time data pipelines, and AI-powered tools at the intersection of finance and software.</p>
+          <p>Outside of that, I'm the founder of <strong>Clubbies</strong>, a nightlife discovery platform built for the Bronx and NYC, and I'm constantly pushing into fintech — building payment systems, real-time data pipelines, and AI-powered tools at the intersection of finance and software.</p>
           <div class="location-tag">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
             Bronx, NY — Manhattan University CS '26
@@ -352,7 +371,7 @@
           <div class="detail-card"><div class="detail-card-label">Current Status</div><div class="detail-card-val">CS Student + <span>Open to Roles</span></div></div>
           <div class="detail-card"><div class="detail-card-label">University</div><div class="detail-card-val">Manhattan University, Bronx NY</div></div>
           <div class="detail-card"><div class="detail-card-label">Top Skills</div><div class="detail-card-val"><span>Python</span> · FastAPI · AWS · PostgreSQL · React</div></div>
-          <div class="detail-card"><div class="detail-card-label">Currently Building</div><div class="detail-card-val">FinTech & web applications</div></div>
+          <div class="detail-card"><div class="detail-card-label">Currently Building</div><div class="detail-card-val">Fintech apps & AWS-powered data pipelines</div></div>
           <div class="detail-card"><div class="detail-card-label">Email</div><div class="detail-card-val"><a href="mailto:jforbes02@manhattan.edu" style="color:var(--amber);text-decoration:none;">jforbes02@manhattan.edu</a></div></div>
         </div>
       </div>
@@ -541,8 +560,9 @@
           <div class="skill-pills">
             <span class="skill-pill">FastAPI</span><span class="skill-pill">Flutter</span>
             <span class="skill-pill">React</span><span class="skill-pill">n8n</span>
-            <span class="skill-pill">Docker</span><span class="skill-pill">PostgreSQL</span>
-            <span class="skill-pill">Git</span><span class="skill-pill">MediaPipe</span>
+            <span class="skill-pill">AWS</span><span class="skill-pill">Docker</span>
+            <span class="skill-pill">PostgreSQL</span><span class="skill-pill">Git</span>
+            <span class="skill-pill">MediaPipe</span>
           </div>
         </div>
         <div class="skill-group reveal reveal-delay-2">
@@ -580,6 +600,20 @@
   </footer>
 
   <script>
+    // Custom cursor
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    document.addEventListener('mousemove', e => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .proj-card.linked, .exp-header').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
 
