@@ -146,24 +146,81 @@
       background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(245,166,35,0.05), transparent 60%);
       opacity: 0; transition: opacity 0.3s;
     }
-    .proj-card:hover { border-color: rgba(245,166,35,0.3); transform: translateY(-4px); }
+    .proj-card:hover { border-color: rgba(0,229,255,0.45); box-shadow: 0 0 40px rgba(0,229,255,0.07); transform: translateY(-4px); }
     .proj-card:hover::before { opacity: 1; }
     .proj-card.linked { cursor: pointer; }
     .proj-card .proj-link-icon { display: none; position: absolute; top: 16px; right: 16px; font-size: 12px; color: var(--muted); }
     .proj-card.linked .proj-link-icon { display: block; }
     .proj-card.linked:hover .proj-link-icon { color: var(--amber); }
 
+    /* Per-badge hover glows — keep transform */
+    .proj-card.badge-aws:hover { border-color: rgba(255,153,0,0.4); box-shadow: 0 0 40px rgba(255,153,0,0.08); transform: translateY(-4px); }
+    .proj-card.badge-ai:hover { border-color: rgba(168,85,247,0.4); box-shadow: 0 0 40px rgba(168,85,247,0.08); transform: translateY(-4px); }
+    .proj-card.badge-mobile:hover { border-color: rgba(34,197,94,0.4); box-shadow: 0 0 40px rgba(34,197,94,0.08); transform: translateY(-4px); }
+    .proj-card.badge-cvml:hover { border-color: rgba(249,115,22,0.4); box-shadow: 0 0 40px rgba(249,115,22,0.08); transform: translateY(-4px); }
+    .proj-card.badge-dataml:hover { border-color: rgba(6,182,212,0.4); box-shadow: 0 0 40px rgba(6,182,212,0.08); transform: translateY(-4px); }
+
     .proj-card.featured {
-      border-color: rgba(0,229,255,0.2);
+      border-color: transparent;
       background: linear-gradient(135deg, #0d0d11 0%, #0a0f14 100%);
+    }
+    .proj-card.featured::after,
+    .proj-card.badge-aws::after,
+    .proj-card.badge-ai::after,
+    .proj-card.badge-mobile::after,
+    .proj-card.badge-cvml::after,
+    .proj-card.badge-dataml::after {
+      position: absolute; top: 16px; right: 16px;
+      font-size: 9px; letter-spacing: 0.2em;
+      padding: 3px 8px; border-radius: 2px;
+      font-family: var(--font-mono);
     }
     .proj-card.featured::after {
       content: 'FINTECH';
-      position: absolute; top: 16px; right: 16px;
-      font-size: 9px; letter-spacing: 0.2em; color: var(--cyan);
-      border: 1px solid rgba(0,229,255,0.3); padding: 3px 8px; border-radius: 2px;
-      font-family: var(--font-mono);
+      color: var(--cyan);
+      border: 1px solid rgba(0,229,255,0.3);
     }
+    .proj-card.badge-aws::after {
+      content: 'AWS';
+      color: #FF9900;
+      border: 1px solid rgba(255,153,0,0.3);
+    }
+    .proj-card.badge-ai::after {
+      content: 'AI AUTOMATION';
+      color: #a855f7;
+      border: 1px solid rgba(168,85,247,0.3);
+    }
+    .proj-card.badge-mobile::after {
+      content: 'MOBILE';
+      color: #22c55e;
+      border: 1px solid rgba(34,197,94,0.3);
+    }
+    .proj-card.badge-cvml::after {
+      content: 'CV + ML';
+      color: #f97316;
+      border: 1px solid rgba(249,115,22,0.3);
+    }
+    .proj-card.badge-dataml::after {
+      content: 'DATA / ML';
+      color: #06b6d4;
+      border: 1px solid rgba(6,182,212,0.3);
+    }
+
+    /* Per-badge hover glows */
+    .proj-card.badge-aws:hover { border-color: rgba(255,153,0,0.4); box-shadow: 0 0 40px rgba(255,153,0,0.08); }
+    .proj-card.badge-aws::before { background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(255,153,0,0.06), transparent 60%); }
+
+    .proj-card.badge-ai:hover { border-color: rgba(168,85,247,0.4); box-shadow: 0 0 40px rgba(168,85,247,0.08); }
+    .proj-card.badge-ai::before { background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(168,85,247,0.06), transparent 60%); }
+
+    .proj-card.badge-mobile:hover { border-color: rgba(34,197,94,0.4); box-shadow: 0 0 40px rgba(34,197,94,0.08); }
+    .proj-card.badge-mobile::before { background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(34,197,94,0.06), transparent 60%); }
+
+    .proj-card.badge-cvml:hover { border-color: rgba(249,115,22,0.4); box-shadow: 0 0 40px rgba(249,115,22,0.08); }
+    .proj-card.badge-cvml::before { background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(249,115,22,0.06), transparent 60%); }
+
+    .proj-card.badge-dataml:hover { border-color: rgba(6,182,212,0.4); box-shadow: 0 0 40px rgba(6,182,212,0.08); }
+    .proj-card.badge-dataml::before { background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(6,182,212,0.06), transparent 60%); }
     .proj-card.featured::before {
       background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(0,229,255,0.07), transparent 60%);
     }
@@ -283,9 +340,9 @@
       </div>
       <div class="about-grid">
         <div class="about-text reveal">
-          <p><span class="hi">Hey, I'm Justin.</span> A CS student at Manhattan University who builds systems that drive real business impact, from multi-agent AI pipelines to full-stack mobile apps.</p>
+          <p><span class="hi">Hey, I'm Justin.</span> A CS student at Manhattan University who builds systems that drive real business impact, from serverless AWS architectures to full-stack fintech applications.</p>
           <p>I recently completed an AI Automation Externship at <strong>Wayfair</strong>, recognized as a <strong>Top Performer</strong>, where I built a 4-agent n8n system that automated competitive intelligence workflows for the Rugs category team.</p>
-          <p>Outside of that, I'm the founder of <strong>Clubbies</strong>, a nightlife discovery platform built for the Bronx and NYC, and I'm constantly working on new side projects at the intersection of AI and real-world utility.</p>
+          <p>Outside of that, I'm the founder of <strong>Clubbies</strong>, a nightlife discovery platform built for the Bronx and NYC, and I'm constantly pushing into fintech — building payment systems, real-time data pipelines, and AI-powered tools at the intersection of finance and software.</p>
           <div class="location-tag">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
             Bronx, NY — Manhattan University CS '26
@@ -294,8 +351,8 @@
         <div class="about-details reveal reveal-delay-2">
           <div class="detail-card"><div class="detail-card-label">Current Status</div><div class="detail-card-val">CS Student + <span>Open to Roles</span></div></div>
           <div class="detail-card"><div class="detail-card-label">University</div><div class="detail-card-val">Manhattan University, Bronx NY</div></div>
-          <div class="detail-card"><div class="detail-card-label">Top Skills</div><div class="detail-card-val"><span>Python</span> · FastAPI · n8n · PostgreSQL · Kotlin</div></div>
-          <div class="detail-card"><div class="detail-card-label">Currently Building</div><div class="detail-card-val">AI-powered tools & mobile apps</div></div>
+          <div class="detail-card"><div class="detail-card-label">Top Skills</div><div class="detail-card-val"><span>Python</span> · FastAPI · AWS · PostgreSQL · React</div></div>
+          <div class="detail-card"><div class="detail-card-label">Currently Building</div><div class="detail-card-val">FinTech & web applications</div></div>
           <div class="detail-card"><div class="detail-card-label">Email</div><div class="detail-card-val"><a href="mailto:jforbes02@manhattan.edu" style="color:var(--amber);text-decoration:none;">jforbes02@manhattan.edu</a></div></div>
         </div>
       </div>
@@ -362,10 +419,10 @@
       </div>
       <div class="projects-grid">
 
-        <div class="proj-card linked reveal" onmousemove="trackMouse(event,this)" onclick="window.open('https://points-flagger.vercel.app/','_blank')">
+        <div class="proj-card badge-aws linked reveal" onmousemove="trackMouse(event,this)" onclick="window.open('https://points-flagger.vercel.app/','_blank')">
           <span class="proj-link-icon">↗</span>
           <div class="proj-num">01 ——</div>
-          <div class="proj-title">oddflagger</div>
+          <div class="proj-title">OddsFlagger</div>
           <p class="proj-desc">Real-time NBA player props tracker that detects significant line movements on FanDuel. Serverless architecture with AWS Lambda, ElastiCache (Redis), and EventBridge CRON jobs. FastAPI backend proxies Lambda endpoints to a React frontend that auto-refreshes every 10 minutes during game windows.</p>
           <div class="proj-tags">
             <span class="tag highlight">AWS Lambda</span>
@@ -393,7 +450,7 @@
           </div>
         </div>
 
-        <div class="proj-card reveal reveal-delay-2" onmousemove="trackMouse(event,this)">
+        <div class="proj-card badge-ai reveal reveal-delay-2" onmousemove="trackMouse(event,this)">
           <div class="proj-num">03 ——</div>
           <div class="proj-title">Wayfair Market Intelligence</div>
           <p class="proj-desc">4-agent n8n automation system: Trend Discovery, Competitor Monitoring, AI Content Strategy, and Market Intelligence Dashboard. Aggregated insights for Rugs category stakeholders.</p>
@@ -405,7 +462,7 @@
           </div>
         </div>
 
-        <div class="proj-card linked reveal reveal-delay-3" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/jforbes02/Clubbies','_blank')">
+        <div class="proj-card badge-mobile linked reveal reveal-delay-3" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/jforbes02/Clubbies','_blank')">
           <span class="proj-link-icon">↗</span>
           <div class="proj-num">04 ——</div>
           <div class="proj-title">Clubbies</div>
@@ -419,7 +476,7 @@
           </div>
         </div>
 
-        <div class="proj-card linked reveal reveal-delay-1" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/nokonkwo-jpg/NYC-Traffic-Insight','_blank')">
+        <div class="proj-card badge-dataml linked reveal reveal-delay-1" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/nokonkwo-jpg/NYC-Traffic-Insight','_blank')">
           <span class="proj-link-icon">↗</span>
           <div class="proj-num">05 ——</div>
           <div class="proj-title">Weather-Driven Traffic Analytics</div>
@@ -433,7 +490,7 @@
           </div>
         </div>
 
-        <div class="proj-card linked reveal reveal-delay-2" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/jforbes02/Align','_blank')">
+        <div class="proj-card badge-cvml linked reveal reveal-delay-2" onmousemove="trackMouse(event,this)" onclick="window.open('https://github.com/jforbes02/Align','_blank')">
           <span class="proj-link-icon">↗</span>
           <div class="proj-num">06 ——</div>
           <div class="proj-title">Align</div>
